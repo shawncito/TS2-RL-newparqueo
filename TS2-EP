@@ -145,10 +145,10 @@ def informes():
     conn.commit()
 
 def generar_reporte_ganancias():
-    # conteo de registros que tienen entrada y salida registrada
+    # Conteo de registros que tienen entrada y salida registrada
     cur.execute("SELECT COUNT(*) FROM historial WHERE hora_ingreso IS NOT NULL AND hora_salida IS NOT NULL")
     total_registros = cur.fetchone()[0]
-    
+
     ganancias = total_registros * 5.00  # Calcula las ganancias multiplicando por $5.00
     print(f"Ganancias totales hasta la fecha: ${ganancias:.2f}\n")
 
@@ -156,10 +156,11 @@ def generar_reporte_vehiculos():
     # Selecciona la marca de cada vehículo y cuenta cuántas veces aparece cada una
     cur.execute("SELECT marca, COUNT(marca) FROM autos GROUP BY marca")
     marcas = cur.fetchall()
-    
+
     print("Conteo de Vehículos por Marca:")
     for marca, conteo in marcas:
         print(f"{marca}: {conteo}")
+
 
 def reportes():
     while True:
